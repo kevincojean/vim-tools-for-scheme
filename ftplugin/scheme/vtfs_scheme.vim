@@ -142,15 +142,12 @@ if !exists("*VtfsToggleTestAlternateFile")
   endfunction
 endif
 
-if !exists(":VtfsToggleTestAlternateFile")
-  command  -buffer VtfsToggleTestAlternateFile call VtfsToggleTestAlternateFile()
-endif
+command  -buffer VtfsToggleTestAlternateFile call VtfsToggleTestAlternateFile()
 
 if !exists("*VtfsRefreshAkkuIfNotSymlinked")
   function VtfsRefreshAkkuIfNotSymlinked()
     " Vim doesn't have a hook which triggers only upon new file creation.
-    " Akku requires it's `install` command to be called to register the new
-    " file.
+    " Akku requires it's `install` command to be called to register the new file.
     " To avoid unnecessary calls to this function, we guard against akku
     " install if we detect the installation for the current file has already been done.
     let l:relFilePath = expand('%')
@@ -182,6 +179,17 @@ augroup vtfs_repl " {{{
     endif
     if !exists(":VtfsReplPopup")
       command -buffer VtfsReplPopup silent execute "normal! :w\<CR>:call simpl#popup_load()\<CR>"
+      let b:simpl_popup_options = #{
+            \ maxheight: min([25, &lines-10]),
+            \ minheight: min([25, &lines-10]),
+            \ maxwidth: min([75, &columns-10]),
+            \ minwidth: min([75, &columns-10]),
+            \	border:[],
+            \	padding: [],
+            \ wrap: "TRUE",
+            \ drag: "TRUE",
+            \ scrollbar: 0,
+            \ }
     endif
     if !exists('b:interpreter')
       let b:interpreter = '' . join([
