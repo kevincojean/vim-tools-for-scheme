@@ -170,7 +170,7 @@ endif
 " }}} vtfs akku
 
 augroup vtfs_repl " {{{
-  if (s:IsPluginFound("dehidehidehi/vim-simpl"))
+  if (s:IsPluginFound("benknoble/vim-simpl"))
     if !exists('g:simpl_mods')
       let b:simpl_mods = 'botright'
     endif
@@ -178,7 +178,7 @@ augroup vtfs_repl " {{{
       command -buffer VtfsReplLoad silent execute "normal! :w\<CR>:call simpl#load('++close', '++cols=" . b:vtfs_repl_cols . "', '++rows=" . (&lines < 30 ? ceil(b:vtfs_repl_rows * 0.66) : b:vtfs_repl_rows)."')\<CR>\<C-w>p'"
     endif
     if !exists(":VtfsReplPopup")
-      command -buffer VtfsReplPopup silent execute "normal! :w\<CR>:call simpl#popup_load()\<CR>"
+      command! -buffer VtfsReplPopup silent execute "normal! :w\<CR>:call simpl#popup_load()\<CR>"
       let b:simpl_popup_options = #{
             \ maxheight: min([25, &lines-10]),
             \ minheight: min([25, &lines-10]),
@@ -191,6 +191,7 @@ augroup vtfs_repl " {{{
             \ scrollbar: 0,
             \ }
     endif
+
     if !exists('b:interpreter')
       let b:interpreter = '' . join([
             \ b:vtfs_is_akku_project ? ".akku/env" : "",
@@ -302,7 +303,7 @@ augroup vtrs_default_keybindings " {{{
     endif
 
     " Repl
-    if (s:IsPluginFound("dehidehidehi/vim-simpl"))
+    if (s:IsPluginFound("benknoble/vim-simpl"))
 
       nnoremap <Plug>VtfsReplLoad; :VtfsReplLoad<CR>
       if !hasmapto('<Plug>VtfsReplLoad;') && s:IsMapped("<Leader>L", "n")

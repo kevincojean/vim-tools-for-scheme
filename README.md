@@ -44,7 +44,7 @@ call plug#begin()
 
     " Recommended for full functionality of `vim-tools-for-scheme` plugin
     Plug 'airblade/vim-rooter'
-    Plug 'dehidehidehi/vim-simpl', { 'branch': 'improvement/allow-do-load-to-pass-more-terminal-options' }
+    Plug 'benknoble/vim-simpl', { 'commit': '9564c0ee6a2c4eaead7860d39fc4613ea5d579fe' }
     Plug 'honza/vim-snippets'
     Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
