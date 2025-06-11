@@ -3,14 +3,15 @@ let g:lsp_settings = {
       \  'racket-lsp': {'allowlist': ['racket', 'scheme']},
       \ }
 
-if !exists("*s:IsPluginFound")
-  function! s:IsPluginFound(plugin_name) abort
-    " The vim runtime only uses the name of the package, not the author
-    " namespace
-    let plugin_name = split(a:plugin_name, '/')[1]
-    return match(&runtimepath, plugin_name) != -1
-  endfunction
-endif
+function! s:IsPluginFound(repo) abort
+  let l:name = split(a:repo, '/')[1]
+  if exists('g:vtfs_plug_directory_root') && !empty(g:vtfs_plug_directory_root)
+    let plugin_path = fnamemodify(g:vtfs_plug_directory_root . '/' . l:name, ':p')
+    return isdirectory(plugin_path)
+  else
+    return match(&runtimepath, l:name) != -1
+  endif
+endfunction
 
 augroup vtfs_rooter " {{{
   if (s:IsPluginFound("airblade/vim-rooter"))
