@@ -112,7 +112,6 @@ if b:vtfs_is_akku_project
         echomsg "Registering " . expand('%:h') . ' into Akku...'
         silent execute ':!akku install > /dev/null 2>&1 /dev/null'
         let l:_ = system('git add ' . expand('%'))
-        echo ""
         execute feedkeys('\<CR>')
       endif
   endif
