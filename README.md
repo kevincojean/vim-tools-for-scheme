@@ -240,6 +240,11 @@ au Filetype scheme b:vtfs_lsp_diagnostics_echo_enabled = 0
 ```
 Disable the `LSP Diagnostics ON/OFF` echo message.
 
+```bash
+au Filetype scheme b:vtfs_plug_directory_root = "~/.vim/plugged"
+```
+When set, assumes your plugins are all listed in the specified directory.  
+When unset, VTFS will use the `&runtimepath` location.  
 
 # Credits
 
