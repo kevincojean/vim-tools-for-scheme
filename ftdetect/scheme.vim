@@ -8,4 +8,5 @@ au BufRead,BufNewFile *.sps7	setlocal filetype=scheme
 au BufRead,BufNewFile *.ss		setlocal filetype=scheme
 
 " TODO : detect scheme filetype in racket files using the rnrs standard
+" TODO : change interpreter to racket if first line in file starts with #r or #lang
 " *.sc,*.sch,*.scm,*.sld,*.sls,*.sps,*.sps7,*.ss,
